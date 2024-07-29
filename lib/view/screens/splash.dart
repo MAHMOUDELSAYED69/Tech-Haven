@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants/routes.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -9,7 +11,16 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> goToNextScreen() async => Future.delayed(
+      const Duration(seconds: 1),
+      () => Navigator.pushReplacementNamed(context, RouteManager.login));
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
