@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tech_haven/utils/constants/fonts.dart';
@@ -18,7 +17,7 @@ abstract class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
           overlayColor:
-          WidgetStatePropertyAll(ColorManager.blue.withOpacity(0.1)),
+              WidgetStatePropertyAll(ColorManager.blue.withOpacity(0.1)),
           foregroundColor: const WidgetStatePropertyAll(ColorManager.blue),
           side: WidgetStatePropertyAll(
             BorderSide(
@@ -39,17 +38,18 @@ abstract class AppTheme {
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          overlayColor:
-          WidgetStatePropertyAll(ColorManager.white.withOpacity(0.2)),
+          padding: WidgetStatePropertyAll(EdgeInsets.zero),
+          elevation:const WidgetStatePropertyAll(5),
+          overlayColor: WidgetStatePropertyAll(ColorManager.white.withOpacity(0.2)),
           foregroundColor: const WidgetStatePropertyAll(ColorManager.white),
-          backgroundColor: const WidgetStatePropertyAll(ColorManager.blue),
-          shape: WidgetStatePropertyAll(
+          shape:WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8), // Use 8 as default value
+              borderRadius: BorderRadius.circular(50),
             ),
           ),
+
           fixedSize: WidgetStatePropertyAll(
-            Size(double.maxFinite, 48.h),
+            Size(double.maxFinite, 40.h),
           ),
         ),
       ),
@@ -58,9 +58,9 @@ abstract class AppTheme {
         checkColor: const WidgetStatePropertyAll(ColorManager.white),
         fillColor: const WidgetStatePropertyAll(ColorManager.white),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.dm),
+          borderRadius: BorderRadius.circular(3),
         ),
-        side: BorderSide(color: ColorManager.blue, width: 1.dm),
+        side: const BorderSide(color: ColorManager.blue, width: 1),
       ),
       //
 
@@ -82,7 +82,7 @@ abstract class AppTheme {
       appBarTheme: AppBarTheme(
         titleTextStyle: TextStyle(
           color: ColorManager.blue,
-          fontSize: 20.spMin,
+          fontSize: 20.sp,
           fontWeight: FontWeight.w500,
         ),
         backgroundColor: ColorManager.blue,
@@ -96,82 +96,74 @@ abstract class AppTheme {
       //-----------------------------------------------------------//* TEXT
       textTheme: TextTheme(
         bodyLarge: TextStyle(
-          fontSize: 24.spMin,
+          fontSize: 23.sp,
           color: ColorManager.blue,
           fontWeight: FontWeight.w600,
         ),
         bodyMedium: TextStyle(
-          fontSize: 16.spMin,
+          fontSize: 15.sp,
           color: ColorManager.blue,
           fontWeight: FontWeight.w500,
         ),
         bodySmall: TextStyle(
-          fontSize: 14.spMin,
-          color: ColorManager.blue,
+          fontSize: 12.sp,
+          color: ColorManager.black,
           fontWeight: FontWeight.w400,
         ),
 
         displayLarge: TextStyle(
-          fontSize: 24.spMin,
-          color: ColorManager.blue,
-          fontWeight: FontWeight.w600,
+          fontSize: 24.sp,
+          color: ColorManager.grey,
+          fontWeight: FontWeight.w400,
         ),
         //--------------------------------------------------//* For button
         displayMedium: TextStyle(
-          fontSize: 16.spMin,
+          fontSize: 15.sp,
           color: ColorManager.white,
           fontWeight: FontWeight.w600,
         ),
         displaySmall: TextStyle(
-          decoration: TextDecoration.underline,
-          decorationColor: ColorManager.blue,
-          color: ColorManager.blue,
-          fontSize: 14.spMin,
+
+          color: ColorManager.white,
+          fontSize: 12.sp,
           fontWeight: FontWeight.w500,
         ),
       ),
       //--------------------------------------------------//* INPUT DECORATION
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(fontSize: 14.spMin),
+        hintStyle: TextStyle(fontSize: 12.sp, fontFamily: FontFamilyManager.inter),
         filled: true,
         fillColor: ColorManager.white,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+          borderSide:BorderSide.none,
+        ),
+        enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+            borderSide: BorderSide.none),
+        errorBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
           ),
           borderSide: BorderSide(
-            width: 1.7.w,
+            width: 1.5,
             color: ColorManager.blue,
           ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
           ),
           borderSide: BorderSide(
-            width: 1.7.w,
+            width: 1.5,
             color: ColorManager.blue,
           ),
         ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          borderSide: BorderSide(
-            width: 2.w,
-            color: ColorManager.blue,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          borderSide: BorderSide(
-            width: 2.w,
-            color: ColorManager.blue,
-          ),
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
+        contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 15),
       ),
     );
   }
