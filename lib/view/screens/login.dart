@@ -4,6 +4,7 @@ import 'package:tech_haven/utils/constants/colors.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
 import '../../utils/constants/images.dart';
+import '../widgets/login_card.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -11,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -31,28 +33,10 @@ class LoginScreen extends StatelessWidget {
                 width: context.width,
                 height: context.height / 1.5,
               )),
-          Positioned(
-            top: context.height / 5,
-            left: 25,
-            right: 25,
-            child: Container(
-              height: context.width / 1.15,
-              decoration: BoxDecoration(
-                color: ColorManager.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: ColorManager.black.withOpacity(0.25),
-                    blurRadius: 20,
-                    spreadRadius: 5.0,
-                    offset: const Offset(2.0, 5.0),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(40.0),
-              ),
-            ),
-          ),
+          LoginCard(),
         ],
       ),
     );
   }
 }
+
