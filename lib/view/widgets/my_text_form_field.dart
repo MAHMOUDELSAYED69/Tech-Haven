@@ -8,7 +8,6 @@ class MyTextFormField extends StatefulWidget {
   const MyTextFormField({
     super.key,
     this.hintText,
-    this.label,
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
@@ -22,8 +21,8 @@ class MyTextFormField extends StatefulWidget {
     this.initialValue,
     this.height,
   });
+
   final String? hintText;
-  final String? label;
   final FormFieldSetter<String>? onSaved;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onFieldSubmitted;
@@ -36,20 +35,21 @@ class MyTextFormField extends StatefulWidget {
   final bool? obscureText;
   final String? initialValue;
   final double? height;
+
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
 }
 
 class _MyTextFormFieldState extends State<MyTextFormField> {
   bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 40.h,
       margin: const EdgeInsets.symmetric(horizontal: 40),
       decoration: BoxDecoration(
-        boxShadow:[
-
+        boxShadow: [
           BoxShadow(
             color: ColorManager.black.withOpacity(0.25),
             spreadRadius: 2,
@@ -59,7 +59,6 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
         ],
       ),
       child: TextFormField(
-
         initialValue: widget.initialValue,
         style: context.textTheme.bodySmall,
         cursorColor: ColorManager.blue,
@@ -68,29 +67,24 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
         obscureText: widget.obscureText ??
             (widget.isVisible == true ? isObscure : false),
         validator: widget.validator ??
-                (value) {
+            (value) {
               if (value!.isEmpty) {
-                return widget.label?.isNotEmpty ?? false
-                    ? "${widget.label} cannot be empty"
-                    : "Field cannot be empty";
-              } else {
-                return null;
+                return  '';
               }
+              return null;
             },
         onFieldSubmitted: widget.onFieldSubmitted,
         onSaved: widget.onSaved,
         onChanged: widget.onChanged,
         decoration: InputDecoration(
-          hintText:  widget.hintText,
+          hintText: widget.hintText,
           isCollapsed: true,
           isDense: true,
           suffixIcon: widget.isVisible == true
               ? _buildSuffixIcon(Icons.visibility_off, Icons.visibility)
               : null,
-
-
         ),
-      ) ,
+      ),
     );
   }
 

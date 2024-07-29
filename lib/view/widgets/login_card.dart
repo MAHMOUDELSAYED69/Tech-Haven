@@ -6,11 +6,31 @@ import 'package:tech_haven/view/widgets/my_text_form_field.dart';
 
 import '../../utils/constants/colors.dart';
 
-class LoginCard extends StatelessWidget {
+class LoginCard extends StatefulWidget {
   const LoginCard({
     super.key,
   });
 
+  @override
+  State<LoginCard> createState() => _LoginCardState();
+}
+
+class _LoginCardState extends State<LoginCard> {
+  @override
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _formKey.currentState?.dispose();
+    super.dispose();
+  }
+  late GlobalKey<FormState> _formKey;
+
+ String? _email;
+  String? _password;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -24,37 +44,59 @@ class LoginCard extends StatelessWidget {
           boxShadow: BoxShadowManager.boxShadow,
           borderRadius: BorderRadius.circular(40.0),
         ),
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 25.h,
-            ),
-            Text(
-              "Welcome",
-              style: context.textTheme.displayLarge,
-            ),
-            SizedBox(height: 10.h),
-            Divider(
-              color: ColorManager.blue,
-              thickness: 3,
-              endIndent: 100.w,
-              indent: 100.w,
-            ),
-            SizedBox(height: 25.h),
-            MyTextFormField(
-              hintText: 'Enter your email',
-            ),
-            SizedBox(height: 12.h),
-            MyTextFormField(
-              hintText: 'Enter your password',
-              obscureText: true,
-            ),
-            SizedBox(height: 25.h),
-            MyElevatedButton(
-              title: 'Login',
-              onPressed: () {},
-            )
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 25.h,
+              ),
+              Text(
+                "Welcome",
+                style: context.textTheme.displayLarge,
+              ),
+              SizedBox(height: 10.h),
+              Divider(
+                color: ColorManager.blue,
+                thickness: 3,
+                endIndent: 100.w,
+                indent: 100.w,
+              ),
+              SizedBox(height: 25.h),
+              MyTextFormField(
+                hintText: 'Enter your email',
+                keyboardType: TextInputType.emailAddress,
+                onSaved: (data){
+                  _email = data;
+                },
+              ),
+              SizedBox(height: 13.h),
+              MyTextFormField(
+                hintText: 'Enter your password',
+                obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
+                onSaved: (data){
+                  _password = data;
+                },
+              ),
+              SizedBox(height: 5.h),
+              Text('', style: context.textTheme.bodySmall?.copyWith(
+                color: ColorManager.error,
+              )),
+              SizedBox(height: 10.h),
+              MyElevatedButton(
+                title: 'Login',
+                onPressed: () {
+
+                  if (_formKey.currentState?.validate() ?? false) {
+                    _formKey.currentState!.save();
+
+
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -131,6 +131,7 @@ abstract class AppTheme {
       ),
       //--------------------------------------------------//* INPUT DECORATION
       inputDecorationTheme: InputDecorationTheme(
+        errorStyle: TextStyle(fontSize: 0),
         hintStyle: TextStyle(fontSize: 12.sp, fontFamily: FontFamilyManager.inter),
         filled: true,
         fillColor: ColorManager.white,
@@ -151,7 +152,7 @@ abstract class AppTheme {
           ),
           borderSide: BorderSide(
             width: 1.5,
-            color: ColorManager.blue,
+            color: ColorManager.error,
           ),
         ),
         focusedErrorBorder: const OutlineInputBorder(
@@ -160,7 +161,7 @@ abstract class AppTheme {
           ),
           borderSide: BorderSide(
             width: 1.5,
-            color: ColorManager.blue,
+            color: ColorManager.error,
           ),
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 15),
