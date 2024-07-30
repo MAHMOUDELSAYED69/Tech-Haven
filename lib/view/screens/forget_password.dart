@@ -6,6 +6,7 @@ import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
 
 import '../../utils/constants/routes.dart';
+import '../widgets/scaffold_bg.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -31,30 +32,27 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        width: context.width,
-        height:450,
-        decoration: BoxDecoration(
-          gradient: GradientManager.scaffoldBackgroundGradient,
-        ),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 100.h),
-            Text('Forget Password', style: context.textTheme.bodyLarge),
-            SizedBox(height: 90.h),
-            Form(
-              key: _formKey,
-              child: MyTextFormField(
-                hintText: 'Enter your Email',
-                keyboardType: TextInputType.emailAddress,
-                onSaved: (data) {
-                  _email = data;
-                },
+      body: ScaffoldBackground(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 100.h),
+              Text('Forget Password', style: context.textTheme.bodyLarge),
+              SizedBox(height: 90.h),
+              Form(
+                key: _formKey,
+                child: MyTextFormField(
+                  hintText: 'Enter your Email',
+                  keyboardType: TextInputType.emailAddress,
+                  onSaved: (data) {
+                    _email = data;
+                  },
 
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(

@@ -43,6 +43,5 @@ abstract class GradientManager {
       colors: [
         ColorManager.blue.withOpacity(0.85),
         ColorManager.white,
-
       ]);
 }

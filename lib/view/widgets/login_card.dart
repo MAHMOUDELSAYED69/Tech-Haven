@@ -104,6 +104,8 @@ class _LoginCardState extends State<LoginCard> {
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       _formKey.currentState!.save();
+                      Navigator.pushReplacementNamed(
+                          context, RouteManager.navbar);
                     }
                   },
                 ),

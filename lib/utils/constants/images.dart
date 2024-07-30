@@ -8,5 +8,6 @@ abstract class ImageManager {
   static const google = 'assets/images/Google__G__Logo 2.png';
   static const apple = 'assets/images/ios 2.png';
   static const facebook = 'assets/images/f.png';
+  static const acct1 = 'assets/images/Acct1.png';
+  static const acct2 = 'assets/images/Acct2.png';
 }
-
