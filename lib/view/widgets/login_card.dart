@@ -5,6 +5,7 @@ import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
 
 import '../../utils/constants/colors.dart';
+import '../../utils/constants/routes.dart';
 
 class LoginCard extends StatefulWidget {
   const LoginCard({
@@ -27,10 +28,12 @@ class _LoginCardState extends State<LoginCard> {
     _formKey.currentState?.dispose();
     super.dispose();
   }
+
   late GlobalKey<FormState> _formKey;
 
- String? _email;
+  String? _email;
   String? _password;
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -38,8 +41,8 @@ class _LoginCardState extends State<LoginCard> {
       left: 25,
       right: 25,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal:  40.0),
-        height: context.width/1.13,
+        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+        height: context.width / 1.13,
         decoration: BoxDecoration(
           color: ColorManager.white,
           boxShadow: BoxShadowManager.boxShadow,
@@ -68,7 +71,7 @@ class _LoginCardState extends State<LoginCard> {
                 MyTextFormField(
                   hintText: 'Enter your email',
                   keyboardType: TextInputType.emailAddress,
-                  onSaved: (data){
+                  onSaved: (data) {
                     _email = data;
                   },
                 ),
@@ -77,20 +80,22 @@ class _LoginCardState extends State<LoginCard> {
                   hintText: 'Enter your password',
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
-                  onSaved: (data){
+                  onSaved: (data) {
                     _password = data;
                   },
                 ),
                 SizedBox(height: 8.h),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: InkWell(child: Text('Forgot Password?',
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: ColorManager.blue,
-                        decoration: TextDecoration.underline,
-                        decorationColor: ColorManager.blue,
-                      )),
-                    onTap: () {},
+                  child: InkWell(
+                    child: Text('Forgot Password?',
+                        style: context.textTheme.bodySmall?.copyWith(
+                          color: ColorManager.blue,
+                          decoration: TextDecoration.underline,
+                          decorationColor: ColorManager.blue,
+                        )),
+                    onTap: () => Navigator.pushNamed(
+                        context, RouteManager.forgotPassword),
                   ),
                 ),
                 SizedBox(height: 20.h),
@@ -99,12 +104,9 @@ class _LoginCardState extends State<LoginCard> {
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       _formKey.currentState!.save();
-
-
                     }
                   },
                 ),
-
               ],
             ),
           ),

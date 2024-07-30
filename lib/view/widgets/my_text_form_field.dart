@@ -46,7 +46,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
+      height: 42.h,
 
       decoration: BoxDecoration(
         boxShadow: [

@@ -10,7 +10,6 @@ abstract class ColorManager {
   static const Color error = Color(0xffF85555);
   static const Color correct = Color(0xff25BD5D);
   static const Color transparent = Colors.transparent;
-
 }
 
 abstract class BoxShadowManager {
@@ -25,6 +24,7 @@ abstract class BoxShadowManager {
     ),
   ];
 }
+
 abstract class GradientManager {
   const GradientManager._();
 
@@ -33,7 +33,16 @@ abstract class GradientManager {
       end: Alignment.centerRight,
       colors: [
         ColorManager.blue,
-        ColorManager.blue.withOpacity(0.6),
+        ColorManager.blue.withOpacity(0.7),
         ColorManager.blue.withOpacity(0.37),
+      ]);
+
+  static Gradient scaffoldBackgroundGradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        ColorManager.blue.withOpacity(0.85),
+        ColorManager.white,
+
       ]);
 }

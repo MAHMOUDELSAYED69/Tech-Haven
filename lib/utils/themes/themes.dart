@@ -97,8 +97,7 @@ abstract class AppTheme {
       textTheme: TextTheme(
         bodyLarge: TextStyle(
           fontSize: 23.sp,
-          color: ColorManager.blue,
-          fontWeight: FontWeight.w600,
+          color: ColorManager.white,
         ),
         bodyMedium: TextStyle(
           fontSize: 15.sp,

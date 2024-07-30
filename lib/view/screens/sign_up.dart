@@ -27,9 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           AuthBottomBody(
             buttonTitle: 'Sign In',
             title: 'Already have an account? ',
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.pop(context),
           ),
           const SignUpCard(),
         ],

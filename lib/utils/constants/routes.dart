@@ -3,7 +3,10 @@ abstract class RouteManager {
  static const String initialRoute ='/';
  static const String login ='/login';
  static const String signUp ='/signUp';
+ static const String forgotPassword ='/forgetPassword';
+  static const String otpScreen ='/otpScreen';
  static const String home ='/home';
+
 
 
 }

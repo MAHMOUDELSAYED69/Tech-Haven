@@ -97,7 +97,7 @@ class _SignUpCardState extends State<SignUpCard> {
                   validator: (value) {
                     if(value?.isEmpty ?? false){
                       return '';
-                    } if(_passwordController.text != value){
+                    }else if(_passwordController.text != value){
                       return '';
                     }
                     return null;

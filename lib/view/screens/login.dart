@@ -24,9 +24,7 @@ class LoginScreen extends StatelessWidget {
           AuthBottomBody(
             buttonTitle: 'Sign Up',
             title: 'Don\'t have an account? ',
-            onTap: () {
-              Navigator.pushNamed(context, RouteManager.signUp);
-            },
+            onTap: () => Navigator.pushNamed(context, RouteManager.signUp),
           ),
           const LoginCard(),
         ],
