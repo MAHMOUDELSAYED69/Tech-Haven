@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tech_haven/utils/constants/routes.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
@@ -29,12 +30,14 @@ class _SignUpCardState extends State<SignUpCard> {
     _passwordController.dispose();
     super.dispose();
   }
+
   late GlobalKey<FormState> _formKey;
   late TextEditingController _passwordController;
 
   String? _email;
   String? _password;
   String? _confirmPassword;
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -42,7 +45,7 @@ class _SignUpCardState extends State<SignUpCard> {
       left: 25,
       right: 25,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal:  40.0),
+        padding: const EdgeInsets.symmetric(horizontal: 40.0),
         height: context.width,
         decoration: BoxDecoration(
           color: ColorManager.white,
@@ -72,7 +75,7 @@ class _SignUpCardState extends State<SignUpCard> {
                 MyTextFormField(
                   hintText: 'Enter your email',
                   keyboardType: TextInputType.emailAddress,
-                  onSaved: (data){
+                  onSaved: (data) {
                     _email = data;
                   },
                 ),
@@ -80,9 +83,8 @@ class _SignUpCardState extends State<SignUpCard> {
                 MyTextFormField(
                   controller: _passwordController,
                   hintText: 'Enter your password',
-                  obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
-                  onSaved: (data){
+                  onSaved: (data) {
                     _password = data;
                   },
                 ),
@@ -91,13 +93,13 @@ class _SignUpCardState extends State<SignUpCard> {
                   hintText: 'Confirm your password',
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
-                  onSaved: (data){
+                  onSaved: (data) {
                     _confirmPassword = data;
                   },
                   validator: (value) {
-                    if(value?.isEmpty ?? false){
+                    if (value?.isEmpty ?? false) {
                       return '';
-                    }else if(_passwordController.text != value){
+                    } else if (_passwordController.text != value) {
                       return '';
                     }
                     return null;
@@ -110,11 +112,10 @@ class _SignUpCardState extends State<SignUpCard> {
                     if (_formKey.currentState?.validate() ?? false) {
                       _formKey.currentState!.save();
 
-
+                      Navigator.pushNamed(context, RouteManager.login);
                     }
                   },
                 ),
-
               ],
             ),
           ),

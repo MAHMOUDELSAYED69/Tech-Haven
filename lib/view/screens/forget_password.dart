@@ -31,11 +31,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         width: context.width,
-        height:400,
+        height:450,
         decoration: BoxDecoration(
           gradient: GradientManager.scaffoldBackgroundGradient,
         ),

@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tech_haven/utils/constants/routes.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
+import 'package:tech_haven/view/widgets/countdown_timer.dart';
 
 import '../../utils/constants/colors.dart';
-import '../../utils/constants/routes.dart';
 import '../widgets/my_elevated_button.dart';
 import '../widgets/otp_field.dart';
 
@@ -34,57 +35,65 @@ class _OTPScreenState extends State<OTPScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        width: context.width,
-        height: 400,
-        decoration: BoxDecoration(
-          gradient: GradientManager.scaffoldBackgroundGradient,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          width: context.width,
+          height: 450,
+          decoration: BoxDecoration(
+            gradient: GradientManager.scaffoldBackgroundGradient,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 100.h),
+              Text('Verify Email', style: context.textTheme.bodyLarge),
+              SizedBox(height: 20.h),
+              const CountdownTimer(),
+              SizedBox(height: 50.h),
+              Form(
+                  key: _formKey,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      OTPField(onSaved: (data) {
+                        _otpValue += data!;
+                      }),
+                      OTPField(onSaved: (data) {
+                        _otpValue += data!;
+                      }),
+                      OTPField(onSaved: (data) {
+                        _otpValue += data!;
+                      }),
+                      OTPField(onSaved: (data) {
+                        _otpValue += data!;
+                      }),
+                    ],
+                  )),
+            ],
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 100.h),
-            Text('Verify Email', style: context.textTheme.bodyLarge),
-            SizedBox(height: 90.h),
-            Form(
-                key: _formKey,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    OTPField(onSaved: (data) {
-                      _otpValue += data!;
-                    }),
-                    OTPField(onSaved: (data) {
-                      _otpValue += data!;
-                    }),
-                    OTPField(onSaved: (data) {
-                      _otpValue += data!;
-                    }),
-                    OTPField(onSaved: (data) {
-                      _otpValue += data!;
-                    }),
-                  ],
-                )),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(
-            left: 40,
-            right: 40,
-            bottom: MediaQuery.viewInsetsOf(context).bottom + 25.h),
-        child: MyElevatedButton(
-          title: 'verify',
-          onPressed: () {
-            _otpValue = '';
-            if (_formKey.currentState!.validate()) {
-              _formKey.currentState!.save();
-              log('otp: $_otpValue');
-            }
-          },
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(
+              left: 40,
+              right: 40,
+              bottom: MediaQuery.viewInsetsOf(context).bottom + 25.h),
+          child: MyElevatedButton(
+            title: 'verify',
+            onPressed: () {
+              _otpValue = '';
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                Navigator.pushReplacementNamed(
+                    context, RouteManager.resetPassword);
+
+                log('otp: $_otpValue');
+              }
+            },
+          ),
         ),
       ),
     );

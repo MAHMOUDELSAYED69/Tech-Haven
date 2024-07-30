@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tech_haven/utils/constants/colors.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
@@ -24,20 +25,21 @@ class OTPField extends StatelessWidget {
         borderSide: BorderSide.none
     );
     return Container(
-      height: 64,
-      width: 60,
+      height: 60,
+      width: 55,
       decoration: BoxDecoration(
         boxShadow: BoxShadowManager.boxShadow,
       ),
       child: TextFormField(
         autofocus: true,
         onChanged: (value) {
-          if (value.length == 1) {
+          if (value.isNotEmpty) {
             FocusScope.of(context).nextFocus();
           }
           if (value.isEmpty) {
             FocusScope.of(context).previousFocus();
           }
+
         },
         validator: (value) {
           if (value!.isEmpty) {
