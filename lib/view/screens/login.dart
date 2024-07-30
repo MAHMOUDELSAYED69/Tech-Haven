@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_haven/utils/constants/routes.dart';
 
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
@@ -20,7 +21,13 @@ class LoginScreen extends StatelessWidget {
             child: Image.asset(ImageManager.authBackground,
                 fit: BoxFit.cover, width: context.width),
           ),
-           AuthBottomBody(title: 'Sign Up',onTap: () {},),
+          AuthBottomBody(
+            buttonTitle: 'Sign Up',
+            title: 'Don\'t have an account? ',
+            onTap: () {
+              Navigator.pushNamed(context, RouteManager.signUp);
+            },
+          ),
           const LoginCard(),
         ],
       ),

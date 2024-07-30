@@ -6,31 +6,35 @@ import 'package:tech_haven/view/widgets/my_text_form_field.dart';
 
 import '../../utils/constants/colors.dart';
 
-class LoginCard extends StatefulWidget {
-  const LoginCard({
+class SignUpCard extends StatefulWidget {
+  const SignUpCard({
     super.key,
   });
 
   @override
-  State<LoginCard> createState() => _LoginCardState();
+  State<SignUpCard> createState() => _SignUpCardState();
 }
 
-class _LoginCardState extends State<LoginCard> {
+class _SignUpCardState extends State<SignUpCard> {
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
+    _passwordController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     _formKey.currentState?.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
   late GlobalKey<FormState> _formKey;
+  late TextEditingController _passwordController;
 
- String? _email;
+  String? _email;
   String? _password;
+  String? _confirmPassword;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -39,7 +43,7 @@ class _LoginCardState extends State<LoginCard> {
       right: 25,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal:  40.0),
-        height: context.width/1.13,
+        height: context.width,
         decoration: BoxDecoration(
           color: ColorManager.white,
           boxShadow: BoxShadowManager.boxShadow,
@@ -54,15 +58,15 @@ class _LoginCardState extends State<LoginCard> {
                   height: 20.h,
                 ),
                 Text(
-                  "Welcome",
+                  "Create Account",
                   style: context.textTheme.displayLarge,
                 ),
                 SizedBox(height: 6.h),
                 Divider(
                   color: ColorManager.blue,
                   thickness: 3,
-                  endIndent: 68.w,
-                  indent: 68.w,
+                  endIndent: 32.w,
+                  indent: 32.w,
                 ),
                 SizedBox(height: 20.h),
                 MyTextFormField(
@@ -74,6 +78,7 @@ class _LoginCardState extends State<LoginCard> {
                 ),
                 SizedBox(height: 13.h),
                 MyTextFormField(
+                  controller: _passwordController,
                   hintText: 'Enter your password',
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
@@ -81,21 +86,26 @@ class _LoginCardState extends State<LoginCard> {
                     _password = data;
                   },
                 ),
-                SizedBox(height: 8.h),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(child: Text('Forgot Password?',
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: ColorManager.blue,
-                        decoration: TextDecoration.underline,
-                        decorationColor: ColorManager.blue,
-                      )),
-                    onTap: () {},
-                  ),
+                SizedBox(height: 13.h),
+                MyTextFormField(
+                  hintText: 'Confirm your password',
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  onSaved: (data){
+                    _confirmPassword = data;
+                  },
+                  validator: (value) {
+                    if(value?.isEmpty ?? false){
+                      return '';
+                    } if(_passwordController.text != value){
+                      return '';
+                    }
+                    return null;
+                  },
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 25.h),
                 MyElevatedButton(
-                  title: 'Login',
+                  title: 'Sign Up',
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       _formKey.currentState!.save();

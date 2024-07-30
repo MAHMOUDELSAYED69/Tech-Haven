@@ -8,9 +8,10 @@ import 'social_login_button.dart';
 
 class AuthBottomBody extends StatelessWidget {
   const AuthBottomBody({
-    super.key, required this.title, this.onTap,
+    super.key, required this.title, this.onTap, required this.buttonTitle,
   });
   final String title;
+  final String buttonTitle;
  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,12 @@ class AuthBottomBody extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text('Don\'t have an account? ',
+                    Text(title,
                         style: context.textTheme.bodySmall
                             ?.copyWith(color: ColorManager.blue)),
                     InkWell(
                       onTap: onTap,
-                      child: Text(title,
+                      child: Text(buttonTitle,
                           style: context.textTheme.bodySmall?.copyWith(
                             color: ColorManager.blue,
                             decoration: TextDecoration.underline,
