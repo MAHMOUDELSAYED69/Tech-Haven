@@ -9,6 +9,7 @@ import 'package:tech_haven/view/widgets/countdown_timer.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/my_elevated_button.dart';
 import '../widgets/otp_field.dart';
+import '../widgets/scaffold_bg.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
@@ -39,41 +40,38 @@ class _OTPScreenState extends State<OTPScreen> {
       canPop: false,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          width: context.width,
-          height: 450,
-          decoration: BoxDecoration(
-            gradient: GradientManager.scaffoldBackgroundGradient,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 100.h),
-              Text('Verify Email', style: context.textTheme.bodyLarge),
-              SizedBox(height: 20.h),
-              const CountdownTimer(),
-              SizedBox(height: 50.h),
-              Form(
-                  key: _formKey,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      OTPField(onSaved: (data) {
-                        _otpValue += data!;
-                      }),
-                      OTPField(onSaved: (data) {
-                        _otpValue += data!;
-                      }),
-                      OTPField(onSaved: (data) {
-                        _otpValue += data!;
-                      }),
-                      OTPField(onSaved: (data) {
-                        _otpValue += data!;
-                      }),
-                    ],
-                  )),
-            ],
+        body: ScaffoldBackground(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 100.h),
+                Text('Verify Email', style: context.textTheme.bodyLarge),
+                SizedBox(height: 20.h),
+                const CountdownTimer(),
+                SizedBox(height: 50.h),
+                Form(
+                    key: _formKey,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        OTPField(onSaved: (data) {
+                          _otpValue += data!;
+                        }),
+                        OTPField(onSaved: (data) {
+                          _otpValue += data!;
+                        }),
+                        OTPField(onSaved: (data) {
+                          _otpValue += data!;
+                        }),
+                        OTPField(onSaved: (data) {
+                          _otpValue += data!;
+                        }),
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: Padding(
