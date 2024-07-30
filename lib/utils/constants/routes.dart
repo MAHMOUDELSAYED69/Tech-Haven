@@ -5,6 +5,7 @@ abstract class RouteManager {
  static const String signUp ='/signUp';
  static const String forgotPassword ='/forgetPassword';
   static const String otpScreen ='/otpScreen';
+  static const String resetPassword ='/resetPassword';
  static const String home ='/home';
 
 

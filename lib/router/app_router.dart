@@ -4,6 +4,7 @@ import 'package:tech_haven/view/screens/sign_up.dart';
 
 import '../utils/constants/routes.dart';
 import '../view/screens/forget_password.dart';
+import '../view/screens/otp_screen.dart';
 import '../view/screens/splash.dart';
 import 'page_transition.dart';
 
@@ -19,6 +20,8 @@ abstract class AppRouter {
         return PageTransitionManager.fadeTransition(const SignUpScreen());
       case RouteManager.forgotPassword:
         return PageTransitionManager.fadeTransition(const ForgetPasswordScreen());
+      case RouteManager.otpScreen:
+        return PageTransitionManager.fadeTransition(const OTPScreen());
       default:
         return null;
     }
