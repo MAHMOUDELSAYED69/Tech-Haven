@@ -38,7 +38,7 @@ abstract class AppTheme {
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          padding: WidgetStatePropertyAll(EdgeInsets.zero),
+          padding: const WidgetStatePropertyAll(EdgeInsets.zero),
           elevation:const WidgetStatePropertyAll(5),
           overlayColor: WidgetStatePropertyAll(ColorManager.white.withOpacity(0.2)),
           foregroundColor: const WidgetStatePropertyAll(ColorManager.white),
@@ -130,7 +130,7 @@ abstract class AppTheme {
       ),
       //--------------------------------------------------//* INPUT DECORATION
       inputDecorationTheme: InputDecorationTheme(
-        errorStyle: TextStyle(fontSize: 0),
+        errorStyle: const TextStyle(fontSize: 0),
         hintStyle: TextStyle(fontSize: 12.sp, fontFamily: FontFamilyManager.inter),
         filled: true,
         fillColor: ColorManager.white,
