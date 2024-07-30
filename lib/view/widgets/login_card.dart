@@ -38,7 +38,8 @@ class _LoginCardState extends State<LoginCard> {
       left: 25,
       right: 25,
       child: Container(
-        height: context.width / 1.15,
+        padding: EdgeInsets.symmetric(horizontal:  40.0),
+        height: context.width/1.15,
         decoration: BoxDecoration(
           color: ColorManager.white,
           boxShadow: BoxShadowManager.boxShadow,
@@ -46,56 +47,66 @@ class _LoginCardState extends State<LoginCard> {
         ),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 25.h,
-              ),
-              Text(
-                "Welcome",
-                style: context.textTheme.displayLarge,
-              ),
-              SizedBox(height: 10.h),
-              Divider(
-                color: ColorManager.blue,
-                thickness: 3,
-                endIndent: 100.w,
-                indent: 100.w,
-              ),
-              SizedBox(height: 25.h),
-              MyTextFormField(
-                hintText: 'Enter your email',
-                keyboardType: TextInputType.emailAddress,
-                onSaved: (data){
-                  _email = data;
-                },
-              ),
-              SizedBox(height: 13.h),
-              MyTextFormField(
-                hintText: 'Enter your password',
-                obscureText: true,
-                keyboardType: TextInputType.visiblePassword,
-                onSaved: (data){
-                  _password = data;
-                },
-              ),
-              SizedBox(height: 5.h),
-              Text('', style: context.textTheme.bodySmall?.copyWith(
-                color: ColorManager.error,
-              )),
-              SizedBox(height: 10.h),
-              MyElevatedButton(
-                title: 'Login',
-                onPressed: () {
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  "Welcome",
+                  style: context.textTheme.displayLarge,
+                ),
+                SizedBox(height: 6.h),
+                Divider(
+                  color: ColorManager.blue,
+                  thickness: 3,
+                  endIndent: 70.w,
+                  indent: 70.w,
+                ),
+                SizedBox(height: 20.h),
+                MyTextFormField(
+                  hintText: 'Enter your email',
+                  keyboardType: TextInputType.emailAddress,
+                  onSaved: (data){
+                    _email = data;
+                  },
+                ),
+                SizedBox(height: 13.h),
+                MyTextFormField(
+                  hintText: 'Enter your password',
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  onSaved: (data){
+                    _password = data;
+                  },
+                ),
+                SizedBox(height: 8.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(child: Text('Forgot Password?',
+                      style: context.textTheme.bodySmall?.copyWith(
+                        color: ColorManager.blue,
+                        decoration: TextDecoration.underline,
+                        decorationColor: ColorManager.blue,
+                      )),
+                    onTap: () {},
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                MyElevatedButton(
+                  title: 'Login',
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      _formKey.currentState!.save();
 
-                  if (_formKey.currentState?.validate() ?? false) {
-                    _formKey.currentState!.save();
 
+                    }
+                  },
+                ),
 
-                  }
-                },
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
@@ -9,9 +8,10 @@ import 'social_login_button.dart';
 
 class AuthBottomBody extends StatelessWidget {
   const AuthBottomBody({
-    super.key,
+    super.key, required this.title, this.onTap,
   });
-
+  final String title;
+ final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -29,9 +29,9 @@ class AuthBottomBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Spacer(flex: 4),
+            const Spacer(flex: 14),
             const CustomDivider(),
-            const Spacer(),
+            const Spacer(flex: 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -44,12 +44,34 @@ class AuthBottomBody extends StatelessWidget {
                 const Spacer(flex: 3),
               ],
             ),
-            const Spacer(),
+            const Spacer(flex: 2),
+            Padding(
+              padding: const EdgeInsets.only(right: 40),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('Don\'t have an account? ',
+                        style: context.textTheme.bodySmall
+                            ?.copyWith(color: ColorManager.blue)),
+                    InkWell(
+                      onTap: onTap,
+                      child: Text(title,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: ColorManager.blue,
+                            decoration: TextDecoration.underline,
+                            decorationColor: ColorManager.blue,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Spacer(flex: 2),
           ],
         ),
       ),
-
     );
   }
 }
-

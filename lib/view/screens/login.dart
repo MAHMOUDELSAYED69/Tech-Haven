@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tech_haven/utils/constants/colors.dart';
+
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
 import '../../utils/constants/images.dart';
+import '../widgets/auth_bottom_body.dart';
 import '../widgets/login_card.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -20,23 +20,10 @@ class LoginScreen extends StatelessWidget {
             child: Image.asset(ImageManager.authBackground,
                 fit: BoxFit.cover, width: context.width),
           ),
-          Positioned(
-              bottom: 0,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: ColorManager.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(60.0),
-                    topRight: Radius.circular(60.0),
-                  ),
-                ),
-                width: context.width,
-                height: context.height / 1.5,
-              )),
-          LoginCard(),
+           AuthBottomBody(title: 'Sign Up',onTap: () {},),
+          const LoginCard(),
         ],
       ),
     );
   }
 }
-

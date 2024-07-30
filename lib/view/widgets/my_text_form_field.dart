@@ -47,7 +47,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
   Widget build(BuildContext context) {
     return Container(
       height: 40.h,
-      margin: const EdgeInsets.symmetric(horizontal: 40),
+
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(

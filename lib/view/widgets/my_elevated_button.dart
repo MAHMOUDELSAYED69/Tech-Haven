@@ -24,34 +24,31 @@ class MyElevatedButton extends StatelessWidget {
   final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 40),
-      child: ElevatedButton(
-          style: context.elevatedButtonTheme.style?.copyWith(
+    return ElevatedButton(
+        style: context.elevatedButtonTheme.style?.copyWith(
 
-            fixedSize: WidgetStatePropertyAll(
-              size ?? Size(context.width, 40.h),
-            ),
-            backgroundColor: WidgetStatePropertyAll(backgroundColor),
-            overlayColor: WidgetStatePropertyAll(backgroundColor),
+          fixedSize: WidgetStatePropertyAll(
+            size ?? Size(context.width, 40.h),
           ),
-          onPressed: isDisabled == true ? null : onPressed,
+          backgroundColor: WidgetStatePropertyAll(backgroundColor),
+          overlayColor: WidgetStatePropertyAll(backgroundColor),
+        ),
+        onPressed: isDisabled == true ? null : onPressed,
 
-          child: Ink(
-            decoration: BoxDecoration(
-              gradient: GradientManager.buttonGradient,
-              borderRadius: BorderRadius.circular(50),
-            ),
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: GradientManager.buttonGradient,
+            borderRadius: BorderRadius.circular(50),
+          ),
 
-            child: Container(
-              alignment: Alignment.center,
-              child: widget ??
-                  Text(
-                    title ?? "",
-                    style: context.textTheme.displayMedium,
-                  ),
-            ),
-          )),
-    ) ;
+          child: Container(
+            alignment: Alignment.center,
+            child: widget ??
+                Text(
+                  title ?? "",
+                  style: context.textTheme.displayMedium,
+                ),
+          ),
+        )) ;
   }
 }
