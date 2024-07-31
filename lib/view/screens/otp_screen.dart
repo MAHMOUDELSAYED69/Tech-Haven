@@ -6,7 +6,6 @@ import 'package:tech_haven/utils/constants/routes.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 import 'package:tech_haven/view/widgets/countdown_timer.dart';
 
-import '../../utils/constants/colors.dart';
 import '../widgets/my_elevated_button.dart';
 import '../widgets/otp_field.dart';
 import '../widgets/scaffold_bg.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
-import '../../utils/constants/colors.dart';
 import '../../utils/constants/routes.dart';
 import '../widgets/my_elevated_button.dart';
 import '../widgets/my_text_form_field.dart';

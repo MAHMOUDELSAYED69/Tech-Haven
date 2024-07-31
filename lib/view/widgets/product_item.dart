@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:tech_haven/router/page_transition.dart';
 import 'package:tech_haven/utils/constants/colors.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
 import '../../utils/constants/images.dart';
+import '../../utils/constants/routes.dart';
+import '../screens/product_screen.dart';
 import 'favorite_button.dart';
 
 class ProductItemCard extends StatelessWidget {
-  const ProductItemCard({
-    super.key,
-  });
+  const ProductItemCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => PersistentNavBarNavigator.pushNewScreen(
+        context,
+        customPageRoute:
+            PageTransitionManager.fadeTransition(const ProductDetailsScreen()),
+        screen: const ProductDetailsScreen(),
+        withNavBar: false,
+      ),
+      // onTap: () => Navigator.pushNamed(context, RouteManager.productDetails),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Stack(

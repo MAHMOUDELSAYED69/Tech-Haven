@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -62,18 +60,18 @@ class _NavBarScreenState extends State<NavBarScreen> {
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
+
       context,
       controller: _controller,
       screens: _screens,
       items: _navBarsItems(),
       backgroundColor: ColorManager.white,
-      handleAndroidBackButtonPress:  true,
-      resizeToAvoidBottomInset: true,
+      handleAndroidBackButtonPress: true,
       stateManagement: true,
+      hideNavigationBarWhenKeyboardAppears: true,
       navBarHeight: 55.h,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
-          // Navigation Bar's items animation properties.
           duration: Duration(milliseconds: 400),
           curve: Curves.ease,
         ),

@@ -9,4 +9,6 @@ abstract class RouteManager {
   static const String resetPassword = '/resetPassword';
   static const String navbar = '/navbar';
   static const String home = '/home';
+  static const String productDetails = '/productDetails';
+
 }
