@@ -150,7 +150,7 @@ abstract class AppTheme {
           ),
           borderSide: BorderSide(
             width: 1.5,
-            color: ColorManager.error,
+            color: ColorManager.red,
           ),
         ),
         focusedErrorBorder: const OutlineInputBorder(
@@ -159,7 +159,7 @@ abstract class AppTheme {
           ),
           borderSide: BorderSide(
             width: 1.5,
-            color: ColorManager.error,
+            color: ColorManager.red,
           ),
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 15),

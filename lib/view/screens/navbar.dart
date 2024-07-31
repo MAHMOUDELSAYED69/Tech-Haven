@@ -48,7 +48,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
         icon: Icon(_icons[index]),
         title: _texts[index],
         activeColorPrimary: ColorManager.blue,
-        inactiveColorPrimary: ColorManager.grey,
+        inactiveColorPrimary: ColorManager.lightGrey,
       );
     });
   }

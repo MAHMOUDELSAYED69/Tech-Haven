@@ -15,7 +15,7 @@ class OTPField extends StatelessWidget {
     const errorBorder =OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(16)),
       borderSide: BorderSide(
-          color: ColorManager.error,
+          color: ColorManager.red,
           width: 1.5
       ),
     );

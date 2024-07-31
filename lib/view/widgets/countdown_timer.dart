@@ -59,7 +59,7 @@ class CountdownTimerState extends State<CountdownTimer> {
     return Center(
       child: Text(
         _formattedTime,
-        style: context.textTheme.bodyLarge?.copyWith(color: ColorManager.error),
+        style: context.textTheme.bodyLarge?.copyWith(color: ColorManager.red),
       ),
     );
   }
