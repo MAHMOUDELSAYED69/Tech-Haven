@@ -23,6 +23,24 @@ abstract class BoxShadowManager {
       offset: const Offset(2.0, 5.0),
     ),
   ];
+
+  static List<BoxShadow>? cardShadow = [
+    BoxShadow(
+      color: ColorManager.black.withOpacity(0.25),
+      blurRadius: 8,
+      spreadRadius: 4.0,
+      offset: const Offset(2.0, 2.0),
+    ),
+  ];
+
+  static List<BoxShadow>? laptopItemShadow = [
+    BoxShadow(
+      color: ColorManager.black.withOpacity(0.25),
+      blurRadius: 4,
+      spreadRadius: 2.0,
+      offset: const Offset(0, 0),
+    ),
+  ];
 }
 
 abstract class GradientManager {
@@ -42,6 +60,14 @@ abstract class GradientManager {
       end: Alignment.bottomCenter,
       colors: [
         ColorManager.blue.withOpacity(0.85),
+        ColorManager.white,
+      ]);
+
+  static Gradient addProductButtonBackgroundGradient = const LinearGradient(
+      begin: Alignment.center,
+      end: Alignment.bottomRight,
+      colors: [
+        ColorManager.blue,
         ColorManager.white,
       ]);
 }
