@@ -102,7 +102,6 @@ abstract class AppTheme {
         bodyMedium: TextStyle(
           fontSize: 15.sp,
           color: ColorManager.blue,
-          fontWeight: FontWeight.w500,
         ),
         bodySmall: TextStyle(
           fontSize: 12.sp,
