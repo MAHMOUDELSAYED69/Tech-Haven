@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tech_haven/utils/constants/colors.dart';
 import 'package:tech_haven/utils/constants/images.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
+import 'package:tech_haven/view/widgets/my_back_button.dart';
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 
 import '../widgets/laptop_view_card.dart';
@@ -36,6 +37,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 48.h),
+                  const MyBackButton(),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Column(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 
@@ -29,9 +28,16 @@ class LaptopViewCard extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),
-          child: Image.asset(
-            changeImage,
-            fit: BoxFit.fill,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            child: Image.asset(
+              changeImage,
+              key: ValueKey<String>(changeImage),
+              fit: BoxFit.fill,
+            ),
           ),
         ),
       ),

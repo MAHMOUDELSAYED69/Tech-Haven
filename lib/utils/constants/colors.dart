@@ -45,10 +45,19 @@ abstract class BoxShadowManager {
 
   static List<BoxShadow>? productViewItemCardShadow = [
     BoxShadow(
-      color: ColorManager.black.withOpacity(0.25),
+      color: ColorManager.black.withOpacity(0.20),
       blurRadius: 4,
       spreadRadius: 5,
       offset: const Offset(0, 2),
+    ),
+  ];
+
+  static List<BoxShadow>? backButtonShadow = [
+    BoxShadow(
+      color: ColorManager.black.withOpacity(0.25),
+      blurRadius: 5,
+      spreadRadius: 5,
+      offset: const Offset(2, 2),
     ),
   ];
 }
