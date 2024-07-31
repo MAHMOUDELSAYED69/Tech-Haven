@@ -9,23 +9,21 @@ class FilterProductCard extends StatelessWidget {
     super.key,
     required this.image,
     required this.text,
-    this.onTap,
   });
 
   final String image;
   final String text;
-  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 13),
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () {},
         child: Container(
           width: context.width / 3.3,
           decoration: ShapeDecoration(
-            color: ColorManager.white,
+            color: text == 'All' ? ColorManager.blue : ColorManager.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -61,7 +59,11 @@ class FilterProductCard extends StatelessWidget {
               const SizedBox(width: 10),
               Text(
                 text,
-                style: context.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
+                style: context.textTheme.bodySmall?.copyWith(
+                  fontSize: 18.sp,
+                  color:
+                      text == 'All' ? ColorManager.white : ColorManager.black,
+                ),
               )
             ],
           ),

@@ -42,6 +42,15 @@ abstract class BoxShadowManager {
       offset: const Offset(0, 0),
     ),
   ];
+
+  static List<BoxShadow>? productViewItemCardShadow = [
+    BoxShadow(
+      color: ColorManager.black.withOpacity(0.25),
+      blurRadius: 4,
+      spreadRadius: 5,
+      offset: const Offset(0, 2),
+    ),
+  ];
 }
 
 abstract class GradientManager {

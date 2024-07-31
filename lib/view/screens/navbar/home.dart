@@ -7,7 +7,7 @@ import 'package:tech_haven/view/widgets/filter_product_card.dart';
 import 'package:tech_haven/view/widgets/my_searchbar.dart';
 import 'package:tech_haven/view/widgets/product_item.dart';
 
-import '../../../utils/constants/colors.dart';
+import '../../../utils/constants/routes.dart';
 import '../../widgets/filer_product_listview.dart';
 import '../../widgets/scaffold_bg.dart';
 
@@ -53,6 +53,7 @@ class HomeScreen extends StatelessWidget {
                 childAspectRatio: childAspectRatio,
               ),
               delegate: SliverChildBuilderDelegate(
+                childCount: 10,
                 (context, index) {
                   return const ProductItemCard();
                 },

@@ -9,8 +9,8 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: ScaffoldBackground(
-        child:Center(child: Text('Account')),
+        child: Center(child: Text('Account')),
       ),
-    );;
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_haven/view/screens/navbar/home.dart';
 import 'package:tech_haven/view/screens/login.dart';
 import 'package:tech_haven/view/screens/navbar.dart';
+import 'package:tech_haven/view/screens/product_screen.dart';
 import 'package:tech_haven/view/screens/sign_up.dart';
 
 import '../utils/constants/routes.dart';
@@ -34,6 +35,9 @@ abstract class AppRouter {
         return PageTransitionManager.fadeTransition(const NavBarScreen());
       case RouteManager.home:
         return PageTransitionManager.fadeTransition(const HomeScreen());
+      case RouteManager.productDetails:
+        return PageTransitionManager.fadeTransition(
+            const ProductDetailsScreen());
       default:
         return null;
     }

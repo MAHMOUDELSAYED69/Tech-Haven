@@ -18,4 +18,6 @@ abstract class ImageManager {
 
   // Item Products
   static const laptop1 = 'assets/images/lap1.png';
+  static const laptop2 = 'assets/images/helios-300 2.png';
+  static const laptop3 = 'assets/images/lap3.png';
 }

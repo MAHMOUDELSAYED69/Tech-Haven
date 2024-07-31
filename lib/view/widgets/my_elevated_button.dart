@@ -14,7 +14,9 @@ class MyElevatedButton extends StatelessWidget {
     this.fontSize,
     this.backgroundColor,
     this.isDisabled,
+    this.borderRadius,
   });
+
   final bool? isDisabled;
   final String? title;
   final VoidCallback? onPressed;
@@ -22,25 +24,29 @@ class MyElevatedButton extends StatelessWidget {
   final Widget? widget;
   final double? fontSize;
   final Color? backgroundColor;
+  final double? borderRadius;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: context.elevatedButtonTheme.style?.copyWith(
-
           fixedSize: WidgetStatePropertyAll(
             size ?? Size(context.width, 40.h),
+          ),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 50),
+            ),
           ),
           backgroundColor: WidgetStatePropertyAll(backgroundColor),
           overlayColor: WidgetStatePropertyAll(backgroundColor),
         ),
         onPressed: isDisabled == true ? null : onPressed,
-
         child: Ink(
           decoration: BoxDecoration(
             gradient: GradientManager.buttonGradient,
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(borderRadius ?? 50),
           ),
-
           child: Container(
             alignment: Alignment.center,
             child: widget ??
@@ -49,6 +55,6 @@ class MyElevatedButton extends StatelessWidget {
                   style: context.textTheme.displayMedium,
                 ),
           ),
-        )) ;
+        ));
   }
 }
