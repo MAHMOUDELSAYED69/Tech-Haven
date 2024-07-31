@@ -10,4 +10,12 @@ abstract class ImageManager {
   static const facebook = 'assets/images/f.png';
   static const acct1 = 'assets/images/Acct1.png';
   static const acct2 = 'assets/images/Acct2.png';
+
+  // Filter Products
+  static const all = 'assets/images/All.png';
+  static const acer = 'assets/images/logochar.png';
+  static const razer = 'assets/images/Razer-Logo 2.png';
+
+  // Item Products
+  static const laptop1 = 'assets/images/lap1.png';
 }
