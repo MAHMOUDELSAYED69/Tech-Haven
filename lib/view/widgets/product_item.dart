@@ -42,7 +42,7 @@ class ProductItemCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(15),
                     width: double.infinity,
-                    height: 103.6.h,
+                    height: 110.h,
                     decoration: BoxDecoration(
                       color: ColorManager.white,
                       borderRadius: BorderRadius.circular(20),

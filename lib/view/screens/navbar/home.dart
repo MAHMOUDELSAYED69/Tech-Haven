@@ -7,7 +7,6 @@ import 'package:tech_haven/view/widgets/filter_product_card.dart';
 import 'package:tech_haven/view/widgets/my_searchbar.dart';
 import 'package:tech_haven/view/widgets/product_item.dart';
 
-import '../../../utils/constants/routes.dart';
 import '../../widgets/filer_product_listview.dart';
 import '../../widgets/scaffold_bg.dart';
 
@@ -21,47 +20,63 @@ class HomeScreen extends StatelessWidget {
     final double childAspectRatio = itemWidth / itemHeight;
     return Scaffold(
       body: ScaffoldBackground(
-          child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: CustomScrollView(
-          slivers: [
-            const SliverToBoxAdapter(
-              child: MySearchBar(),
-            ),
-            const SliverToBoxAdapter(
-              child: CarouselSliderCard(images: [
-                ImageManager.acct1,
-                ImageManager.acct2,
-              ]),
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(height: 10.h),
-            ),
-            const SliverToBoxAdapter(
-              child: FilterProductListViewBuilder(
-                filterProductList: [
-                  FilterProductCard(image: ImageManager.all, text: 'All'),
-                  FilterProductCard(image: ImageManager.acer, text: 'Acer'),
-                  FilterProductCard(image: ImageManager.razer, text: 'Razer'),
-                ],
-              ),
-            ),
-            SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: childAspectRatio,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                childCount: 10,
-                (context, index) {
-                  return const ProductItemCard();
-                },
-              ),
-            ),
-          ],
-        ),
-      )),
+          child: Stack(
+            children: [
+              SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: CustomScrollView(
+              slivers: [
+                const SliverToBoxAdapter(
+                  child: Stack(
+                    children: [
+                      MySearchBar(data: [
+                        'Laptop',
+                        'Keyboard',
+                        'Mouse',
+                        'Headphones',
+                        'Speaker',
+                      ]),
+                    ],
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 16.h),
+                    child: const CarouselSliderCard(images: [
+                      ImageManager.acct1,
+                      ImageManager.acct2,
+                    ]),
+                  ),
+                ),
+                const SliverToBoxAdapter(
+                  child: FilterProductListViewBuilder(
+                    filterProductList: [
+                      FilterProductCard(image: ImageManager.all, text: 'All'),
+                      FilterProductCard(image: ImageManager.acer, text: 'Acer'),
+                      FilterProductCard(image: ImageManager.razer, text: 'Razer'),
+                    ],
+                  ),
+                ),
+                SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: childAspectRatio,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: 10,
+                    (context, index) {
+                      return const ProductItemCard();
+                    },
+                  ),
+                ),
+              ],
+                      ),
+                    ),
+
+            ],
+
+          )),
     );
   }
 }
