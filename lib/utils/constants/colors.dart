@@ -60,6 +60,16 @@ abstract class BoxShadowManager {
       offset: const Offset(2, 2),
     ),
   ];
+
+  static List<BoxShadow>? searchBarShadow = [
+    BoxShadow(
+      color: ColorManager.black.withOpacity(0.40),
+      blurRadius: 8,
+      spreadRadius: 3,
+      offset: const Offset(2, 2),
+    ),
+  ];
+
 }
 
 abstract class GradientManager {
