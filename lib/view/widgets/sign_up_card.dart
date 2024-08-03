@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tech_haven/utils/constants/routes.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
+import 'package:tech_haven/utils/helper/my_sncakbar.dart';
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
+import 'package:tech_haven/viewmodel/signup/sign_up_cubit.dart';
 
+import '../../data/apis/signup_api.dart';
 import '../../utils/constants/colors.dart';
 
 class SignUpCard extends StatefulWidget {
@@ -20,23 +26,30 @@ class _SignUpCardState extends State<SignUpCard> {
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-    _passwordController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     _formKey.currentState?.dispose();
-    _passwordController.dispose();
+
     super.dispose();
   }
 
   late GlobalKey<FormState> _formKey;
-  late TextEditingController _passwordController;
 
+  String? _fullName;
   String? _email;
   String? _password;
-  String? _confirmPassword;
+
+  void signUp() {
+    if (_formKey.currentState?.validate() ?? false) {
+      _formKey.currentState!.save();
+      context
+          .cubit<SignUpCubit>()
+          .signUp(name: _fullName!, email: _email!, password: _password!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +86,14 @@ class _SignUpCardState extends State<SignUpCard> {
                 ),
                 SizedBox(height: 20.h),
                 MyTextFormField(
+                  hintText: 'Enter your full name',
+                  keyboardType: TextInputType.name,
+                  onSaved: (data) {
+                    _fullName = data;
+                  },
+                ),
+                SizedBox(height: 13.h),
+                MyTextFormField(
                   hintText: 'Enter your email',
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (data) {
@@ -81,40 +102,30 @@ class _SignUpCardState extends State<SignUpCard> {
                 ),
                 SizedBox(height: 13.h),
                 MyTextFormField(
-                  controller: _passwordController,
                   hintText: 'Enter your password',
+                  obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                   onSaved: (data) {
                     _password = data;
                   },
                 ),
-                SizedBox(height: 13.h),
-                MyTextFormField(
-                  hintText: 'Confirm your password',
-                  obscureText: true,
-                  keyboardType: TextInputType.visiblePassword,
-                  onSaved: (data) {
-                    _confirmPassword = data;
-                  },
-                  validator: (value) {
-                    if (value?.isEmpty ?? false) {
-                      return '';
-                    } else if (_passwordController.text != value) {
-                      return '';
-                    }
-                    return null;
-                  },
-                ),
                 SizedBox(height: 25.h),
-                MyElevatedButton(
-                  title: 'Sign Up',
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      _formKey.currentState!.save();
-
-                      Navigator.pushNamed(context, RouteManager.login);
+                BlocListener<SignUpCubit, SignUpState>(
+                  listener: (context, state) {
+                    if (state is SignUpSuccess) {
+                      Navigator.pushNamed(context, RouteManager.otpScreen,
+                          arguments: _email);
+                      customSnackBar(context,
+                          message: 'Sign Up Success',
+                          color: ColorManager.correct);
+                    } else if (state is SignUpError) {
+                      customSnackBar(context, message: state.message);
                     }
                   },
+                  child: MyElevatedButton(
+                    title: 'Sign Up',
+                    onPressed: signUp,
+                  ),
                 ),
               ],
             ),

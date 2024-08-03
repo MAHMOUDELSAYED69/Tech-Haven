@@ -14,7 +14,7 @@ class CountdownTimer extends StatefulWidget {
 }
 
 class CountdownTimerState extends State<CountdownTimer> {
-  static const int initialTime = 120; // 2 minutes in seconds
+  static const int initialTime = 300;
   int _remainingTime = initialTime;
   Timer? _timer;
 

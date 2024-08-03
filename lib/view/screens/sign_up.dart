@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
+import 'package:tech_haven/viewmodel/signup/sign_up_cubit.dart';
 
 import '../../utils/constants/images.dart';
 import '../widgets/auth_bottom_body.dart';
@@ -29,7 +31,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             title: 'Already have an account? ',
             onTap: () => Navigator.pop(context),
           ),
-          const SignUpCard(),
+          BlocProvider(
+            create: (context) => SignUpCubit(),
+            child: const SignUpCard(),
+          ),
         ],
       ),
     );

@@ -19,6 +19,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
+
   final List<IconData> _icons = [
     Icons.home,
     Icons.favorite,
