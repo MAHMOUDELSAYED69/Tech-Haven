@@ -37,7 +37,10 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_dotenv: ^5.1.0
   flutter_screenutil: ^5.9.3
+  flutter_secure_storage: ^9.2.2
+  json_response: ^2.3.2
   material_floating_search_bar_2: ^0.5.0
+  meta: ^1.12.0
   persistent_bottom_nav_bar: ^6.2.1
   shared_preferences: ^2.3.1
 
@@ -74,7 +77,5 @@ flutter:
     - family: Inter
       fonts:
         - asset: assets\fonts\Inter-Regular.ttf
-
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

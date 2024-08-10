@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_haven/view/screens/navbar/home.dart';
 import 'package:tech_haven/view/screens/login.dart';
 import 'package:tech_haven/view/screens/navbar.dart';
 import 'package:tech_haven/view/screens/product_screen.dart';
 import 'package:tech_haven/view/screens/sign_up.dart';
-import 'package:tech_haven/viewmodel/otp/otp_cubit.dart';
 
 import '../utils/constants/routes.dart';
 import '../view/screens/forget_password.dart';
@@ -30,11 +28,8 @@ abstract class AppRouter {
             const ForgetPasswordScreen());
       case RouteManager.otpScreen:
         final String email = settings.arguments as String;
-        return PageTransitionManager.fadeTransition(BlocProvider(
-          create: (context) => OtpCubit(),
-          child: OTPScreen(
-            email: email,
-          ),
+        return PageTransitionManager.fadeTransition(OTPScreen(
+          email: email,
         ));
       case RouteManager.resetPassword:
         return PageTransitionManager.fadeTransition(

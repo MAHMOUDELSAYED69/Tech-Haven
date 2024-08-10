@@ -7,4 +7,5 @@ abstract class ApiUrlManager {
   static String otpEndpoint = dotenv.env['otpEndpoint']!;
   static String loginEndpoint = dotenv.env['loginEndpoint']!;
   static String signUpEndpoint = dotenv.env['signUpEndpoint']!;
+  static String refreshTokenEndPoint = dotenv.env['refreshTokenEndPoint']!;
 }
