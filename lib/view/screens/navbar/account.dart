@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tech_haven/utils/constants/colors.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
+import 'package:tech_haven/viewmodel/auth/auth_cubit.dart';
 
 import '../../widgets/account_options_card.dart';
 import '../../widgets/scaffold_bg.dart';
@@ -78,9 +80,12 @@ class AccountScreen extends StatelessWidget {
                   title: 'Help & Support',
                 ),
 
-                const AccountOption(
+                AccountOption(
                   icon: Icons.logout,
                   title: 'Logout',
+                  onTap: () {
+                    context.read<AuthCubit>().logout();
+                  },
                 ),
                 SizedBox(height: 10.h),
               ],

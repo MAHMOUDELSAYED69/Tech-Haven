@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tech_haven/data/apis/login_api.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
-import 'package:tech_haven/utils/helper/my_sncakbar.dart';
+
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
-import 'package:tech_haven/viewmodel/login/login_cubit.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/routes.dart';
+import '../../utils/helper/my_sncakbar.dart';
+import '../../viewmodel/auth/auth_cubit.dart';
 
 class LoginCard extends StatefulWidget {
-  const LoginCard({
-    super.key,
-  });
+  const LoginCard({super.key});
 
   @override
   State<LoginCard> createState() => _LoginCardState();
@@ -41,7 +39,7 @@ class _LoginCardState extends State<LoginCard> {
   void login() {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
-      context.cubit<LoginCubit>().login(email: _email!, password: _password!);
+      context.read<AuthCubit>().login(_email!, _password!);
     }
   }
 
@@ -110,16 +108,14 @@ class _LoginCardState extends State<LoginCard> {
                   ),
                 ),
                 SizedBox(height: 20.h),
-                BlocListener<LoginCubit, LoginState>(
+                BlocListener<AuthCubit, AuthState>(
                   listener: (context, state) {
-                    if (state is LoginSuccess) {
+                    if (state is AuthOtpPending) {
                       Navigator.pushReplacementNamed(
-                          context, RouteManager.navbar);
-                      customSnackBar(context,
-                          message: 'Login Success',
-                          color: ColorManager.correct);
-                    } else if (state is LoginError) {
-                      customSnackBar(context, message: state.message);
+                          context, RouteManager.otpScreen,
+                          arguments: _email);
+                    } else if (state is AuthFailure) {
+                      customSnackBar(context, message: state.error);
                     }
                   },
                   child: MyElevatedButton(
