@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,9 +6,8 @@ import 'package:tech_haven/utils/extentions/extentions.dart';
 import 'package:tech_haven/utils/helper/my_sncakbar.dart';
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
-import 'package:tech_haven/viewmodel/signup/sign_up_cubit.dart';
+import 'package:tech_haven/viewmodel/auth/auth_cubit.dart';
 
-import '../../data/apis/signup_api.dart';
 import '../../utils/constants/colors.dart';
 
 class SignUpCard extends StatefulWidget {
@@ -45,9 +42,7 @@ class _SignUpCardState extends State<SignUpCard> {
   void signUp() {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
-      context
-          .cubit<SignUpCubit>()
-          .signUp(name: _fullName!, email: _email!, password: _password!);
+      context.cubit<AuthCubit>().signUp(_fullName!, _email!, _password!);
     }
   }
 
@@ -110,16 +105,16 @@ class _SignUpCardState extends State<SignUpCard> {
                   },
                 ),
                 SizedBox(height: 25.h),
-                BlocListener<SignUpCubit, SignUpState>(
+                BlocListener<AuthCubit, AuthState>(
                   listener: (context, state) {
-                    if (state is SignUpSuccess) {
+                    if (state is AuthSignUpSuccess) {
                       Navigator.pushNamed(context, RouteManager.otpScreen,
                           arguments: _email);
                       customSnackBar(context,
                           message: 'Sign Up Success',
                           color: ColorManager.correct);
-                    } else if (state is SignUpError) {
-                      customSnackBar(context, message: state.message);
+                    } else if (state is AuthFailure) {
+                      customSnackBar(context, message: state.error);
                     }
                   },
                   child: MyElevatedButton(

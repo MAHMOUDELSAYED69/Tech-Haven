@@ -1,18 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tech_haven/data/apis/otp_api.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
-import 'package:tech_haven/utils/helper/my_sncakbar.dart';
 import 'package:tech_haven/view/widgets/countdown_timer.dart';
-import 'package:tech_haven/viewmodel/otp/otp_cubit.dart';
+import 'package:tech_haven/view/widgets/my_elevated_button.dart';
+import 'package:tech_haven/view/widgets/otp_field.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/routes.dart';
-import '../widgets/my_elevated_button.dart';
-import '../widgets/otp_field.dart';
+import '../../utils/helper/my_sncakbar.dart';
+import '../../viewmodel/auth/auth_cubit.dart';
 import '../widgets/scaffold_bg.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -38,15 +35,13 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   late GlobalKey<FormState> _formKey;
-  String _otpValue = '';
+  String _otpCode = '';
 
   void verifyOtp() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      context
-          .cubit<OtpCubit>()
-          .verifyOtp(email: widget.email, otpCode: _otpValue);
-      _otpValue = '';
+      context.read<AuthCubit>().verifyOtp(widget.email, _otpCode);
+      _otpCode = '';
     }
   }
 
@@ -73,16 +68,16 @@ class _OTPScreenState extends State<OTPScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         OTPField(onSaved: (data) {
-                          _otpValue += data!;
+                          _otpCode += data!;
                         }),
                         OTPField(onSaved: (data) {
-                          _otpValue += data!;
+                          _otpCode += data!;
                         }),
                         OTPField(onSaved: (data) {
-                          _otpValue += data!;
+                          _otpCode += data!;
                         }),
                         OTPField(onSaved: (data) {
-                          _otpValue += data!;
+                          _otpCode += data!;
                         }),
                       ],
                     )),
@@ -91,28 +86,28 @@ class _OTPScreenState extends State<OTPScreen> {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-              left: 40,
-              right: 40,
-              bottom: MediaQuery.viewInsetsOf(context).bottom + 25.h),
-          child: BlocListener<OtpCubit, OtpState>(
-            listener: (context, state) {
-              if (state is OtpSuccess) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, RouteManager.login, (route) => false);
-                customSnackBar(context,
-                    message: 'Verification Success, you can login now',
-                    color: ColorManager.correct);
-              } else if (state is OtpError) {
-                customSnackBar(context, message: state.message);
-              }
-            },
-            child: MyElevatedButton(
-              title: 'verify',
-              onPressed: verifyOtp,
-            ),
-          ),
-        ),
+            padding: EdgeInsets.only(
+                left: 40,
+                right: 40,
+                bottom: MediaQuery.viewInsetsOf(context).bottom + 25.h),
+            child: BlocListener<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthOtpVerificationSuccess) {
+                  customSnackBar(context,
+                      message: 'Verification Success',
+                      color: ColorManager.correct);
+                } else if (state is AuthLoginSuccess) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RouteManager.navbar, (route) => false);
+                } else if (state is AuthFailure) {
+                  customSnackBar(context, message: state.error);
+                }
+              },
+              child: MyElevatedButton(
+                title: 'Verify',
+                onPressed: verifyOtp,
+              ),
+            )),
       ),
     );
   }
