@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_haven/data/apis/auth_service.dart';
 import 'package:tech_haven/view/screens/navbar/home.dart';
 import 'package:tech_haven/view/screens/login.dart';
 import 'package:tech_haven/view/screens/navbar.dart';
@@ -27,9 +28,14 @@ abstract class AppRouter {
         return PageTransitionManager.fadeTransition(
             const ForgetPasswordScreen());
       case RouteManager.otpScreen:
-        final String email = settings.arguments as String;
+        final arguments = settings.arguments as Map<String, dynamic>?;
+
+        final String email = arguments?['email'] as String? ?? '';
+        final AuthRole role = arguments?['role'] as AuthRole? ?? AuthRole.user;
+
         return PageTransitionManager.fadeTransition(OTPScreen(
           email: email,
+          role: role,
         ));
       case RouteManager.resetPassword:
         return PageTransitionManager.fadeTransition(
