@@ -4,8 +4,14 @@ abstract class ApiUrlManager {
   ApiUrlManager._();
 
   static String baseUrl = dotenv.env['baseUrl']!;
-  static String otpEndpoint = dotenv.env['otpEndpoint']!;
   static String loginEndpoint = dotenv.env['loginEndpoint']!;
   static String signUpEndpoint = dotenv.env['signUpEndpoint']!;
-  static String refreshTokenEndPoint = dotenv.env['refreshTokenEndPoint']!;
+
+  static String userOtpEndpoint = dotenv.env['userOtpEndpoint']!;
+  static String adminOtpEndpoint = dotenv.env['adminOtpEndpoint']!;
+
+  static String userRefreshTokenEndPoint =
+      dotenv.env['userRefreshTokenEndPoint']!;
+  static String adminRefreshTokenEndPoint =
+      dotenv.env['adminRefreshTokenEndPoint']!;
 }
