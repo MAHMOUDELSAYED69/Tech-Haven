@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tech_haven/utils/constants/apis.dart';
 
+enum AuthRole { user, admin }
+
 class AuthenticationWebService {
   final Dio _dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
@@ -22,7 +24,6 @@ class AuthenticationWebService {
     if (response.statusCode == 201) {
       return response.data;
     } else {
-      // Handle login failure
       throw Exception('Failed to login');
     }
   }
@@ -45,9 +46,17 @@ class AuthenticationWebService {
     }
   }
 
-  Future<void> verifyOtp(String email, String otpCode) async {
+  Future<void> verifyOtp(String email, String otpCode, AuthRole role) async {
+    if (role == AuthRole.user) {
+      await _secureStorage.write(key: 'role', value: 'user');
+    } else if (role == AuthRole.admin) {
+      await _secureStorage.write(key: 'role', value: 'admin');
+    }
+
     final response = await _dio.post(
-      ApiUrlManager.otpEndpoint,
+      role == AuthRole.user
+          ? ApiUrlManager.userOtpEndpoint
+          : ApiUrlManager.adminOtpEndpoint,
       data: {
         'email': email,
         'otp': otpCode,
@@ -76,9 +85,11 @@ class AuthenticationWebService {
     if (refreshToken == null) {
       throw Exception('No refresh token available');
     }
-
+    String role = await _secureStorage.read(key: 'role') ?? 'user';
     final response = await _dio.post(
-      ApiUrlManager.refreshTokenEndPoint,
+      role == 'user'
+          ? ApiUrlManager.userRefreshTokenEndPoint
+          : ApiUrlManager.adminRefreshTokenEndPoint,
       options: Options(
         headers: {
           'Authorization': 'Bearer $refreshToken',
@@ -121,13 +132,12 @@ class AuthenticationWebService {
     log("Current RefreshToken: $refreshToken");
 
     if (accessToken == null) {
-      return false; // No access token means user is not logged in
+      return false;
     }
 
     if (refreshToken == null) {
-      // Refresh token is missing, attempt to refresh the access token
       try {
-        await refreshAccessToken();
+        await refreshAccessToken;
         return true;
       } catch (e) {
         log("Failed to refresh token: $e");
@@ -135,6 +145,6 @@ class AuthenticationWebService {
       }
     }
 
-    return true; // Both tokens are present
+    return true;
   }
 }
