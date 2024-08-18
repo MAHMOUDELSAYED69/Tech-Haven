@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_haven/utils/constants/colors.dart';
 import 'package:tech_haven/utils/constants/images.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
@@ -18,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    cubit = context.cubit<AuthCubit>();
+    cubit = context.read<AuthCubit>();
     checkLogin();
     super.initState();
   }

@@ -23,10 +23,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> verifyOtp(String email, String otpCode) async {
+  Future<void> verifyOtp(String email, String otpCode, AuthRole role) async {
     emit(AuthLoading());
     try {
-      await _authService.verifyOtp(email, otpCode);
+      await _authService.verifyOtp(email, otpCode, role);
       emit(AuthOtpVerificationSuccess());
       emit(AuthLoginSuccess());
     } catch (e) {

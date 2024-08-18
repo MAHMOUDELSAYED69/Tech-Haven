@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tech_haven/data/apis/auth_service.dart';
 import 'package:tech_haven/utils/extentions/extentions.dart';
 import 'package:tech_haven/view/widgets/countdown_timer.dart';
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
@@ -13,9 +14,10 @@ import '../../viewmodel/auth/auth_cubit.dart';
 import '../widgets/scaffold_bg.dart';
 
 class OTPScreen extends StatefulWidget {
-  const OTPScreen({super.key, required this.email});
+  const OTPScreen({super.key, required this.email, required this.role});
 
   final String email;
+  final AuthRole role;
 
   @override
   State<OTPScreen> createState() => _OTPScreenState();
@@ -40,7 +42,7 @@ class _OTPScreenState extends State<OTPScreen> {
   void verifyOtp() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      context.read<AuthCubit>().verifyOtp(widget.email, _otpCode);
+      context.read<AuthCubit>().verifyOtp(widget.email, _otpCode,widget.role);
       _otpCode = '';
     }
   }

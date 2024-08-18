@@ -22,14 +22,3 @@ extension MediaQueryExtensions on BuildContext {
   double get width => MediaQuery.sizeOf(this).width;
 }
 
-//! BLOC EXTENSION
-extension CubitExtension<T extends Cubit<Object>> on BuildContext {
-  // ignore: avoid_shadowing_type_parameters
-  T cubit<T extends Cubit<Object>>() {
-    try {
-      return BlocProvider.of<T>(this);
-    } catch (_) {
-      throw Exception('Cannot find bloc of type $T.');
-    }
-  }
-}

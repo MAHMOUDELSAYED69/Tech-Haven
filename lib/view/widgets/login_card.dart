@@ -6,14 +6,18 @@ import 'package:tech_haven/utils/extentions/extentions.dart';
 import 'package:tech_haven/view/widgets/my_elevated_button.dart';
 import 'package:tech_haven/view/widgets/my_text_form_field.dart';
 
+import '../../data/apis/auth_service.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/routes.dart';
 import '../../utils/helper/my_sncakbar.dart';
 import '../../viewmodel/auth/auth_cubit.dart';
 
 class LoginCard extends StatefulWidget {
-  const LoginCard({super.key});
-
+  const LoginCard({
+    super.key,
+    required this.role,
+  });
+  final AuthRole role;
   @override
   State<LoginCard> createState() => _LoginCardState();
 }
@@ -113,7 +117,7 @@ class _LoginCardState extends State<LoginCard> {
                     if (state is AuthOtpPending) {
                       Navigator.pushReplacementNamed(
                           context, RouteManager.otpScreen,
-                          arguments: _email);
+                          arguments: {"email": _email, "role": widget.role});
                     } else if (state is AuthFailure) {
                       customSnackBar(context, message: state.error);
                     }

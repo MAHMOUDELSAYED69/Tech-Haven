@@ -42,7 +42,7 @@ class _SignUpCardState extends State<SignUpCard> {
   void signUp() {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
-      context.cubit<AuthCubit>().signUp(_fullName!, _email!, _password!);
+      context.read<AuthCubit>().signUp(_fullName!, _email!, _password!);
     }
   }
 
